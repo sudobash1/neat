@@ -1,0 +1,21 @@
+div#vis_div {
+ width: 90%;
+ margin-left: 5%;
+ background-color: rgb(255,0,0);
+}
+
+div#graph_div {
+ background-color: rgb(0,255,0);
+ padding: 2em 2em 2em 2em;
+ float: left;
+}
+
+div#menu_div {
+ background-color: rgb(255,0,255);
+ padding: 2em 2em 2em 2em;
+ float: right;
+}
+
+.clear {
+ clear: both;
+}

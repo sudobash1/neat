@@ -2,15 +2,40 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-	<title>Shiley Disciplines Test</title>
+	<title>NEAT</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
 	
 	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script type="text/javascript" src="viz.js" ></script>
+    <script type="text/javascript" src="viz.js" ></script>
 	
 </head>
+
 <body>
-<div class="container" id="line_visualization_div" style="height: 400px;"></div>
-<div class="container" id="time_visualization_div" style="height: 400px;"></div>
+<div id="vis_div">
+    <div id="menu_div">
+        <form action="" id="class_form">
+            <input type="checkbox" name="freshman" value="freshman" checked>
+                Freshman
+            </input>
+            <br/>
+            <input type="checkbox" name="sophmore" value="sophmore" checked>
+                Sophmore
+            </input>
+            <br/>
+            <input type="checkbox" name="junior" value="junior" checked>
+                Junior
+            </input>
+            <br/>
+            <input type="checkbox" name="senior" value="senior" checked>
+                Senior
+            </input>
+        </form>
+    </div>
+    <div id="graph_div">
+    This is text.
+    </div>
+    <div class="clear"/>
+</div>
 </body>
