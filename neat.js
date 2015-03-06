@@ -63,17 +63,19 @@ neat.majors = ['Electrical Engineering',
  * @since: Mar 5, 2015
  */
 neat.init = function() {
-    hidden_elts = document.getElementsByClassName('hide_until_init')
-    for (i = 0; i < hidden_elts.length; i++){
-        hidden_elts[i].style.visibility = "visible";
-    }
 
-    neat.cacheData();
     neat.updateChecks();
 
-    animation.stopSpinners();
+    neat.cacheData(function(){
 
-    neat.createGraph(true);
+        animation.stopSpinners();
+        hidden_elts = document.getElementsByClassName('hide_until_init')
+        for (i = 0; i < hidden_elts.length; i++){
+            hidden_elts[i].style.visibility = "visible";
+        }
+
+        neat.createGraph(true);
+    });
 }
 
 /*

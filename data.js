@@ -33,24 +33,42 @@ neat.dataBase = {
     enrollmentYears : [],
 };
 
+
+//Our Google API key.
+neat.key = 'AIzaSyAoPgc2vvLx1clco30E9PwsP4f2deS3iSA'
+
+
 /*
  * casheData
  *
  * Pull and preprocess all the data from the fusion table. We will load all
  * the data at once.
  *
+ * Accepts as an argument a function to run on data loading completion.
+ *
  * @author Stephen Robinson
  * @since: Mar 5, 2015
  */
-neat.cacheData = function() {
+neat.cacheData = function(done) {
+    return neat.getProfessorData().done( function(){
+        neat.getEnrollmentData()
+            .done(done);
+    });
+}
 
-    //Our API key.
-    key = 'AIzaSyAoPgc2vvLx1clco30E9PwsP4f2deS3iSA'
+/* 
+ * getProfessorData
+ *
+ * Pull and preprocess all the data from the professor fusion table.
+ *
+ * @author Stephen Robinson
+ * @since: Mar 5, 2015
+ */
+neat.getProfessorData = function() {
 
     /*************************************************************************
      * Professor data
      *
-     * Download the professor data from the professor fusion table.
      * The professor fusion table has the columns.
      *
      * name: The professor's name. Must be unique.
@@ -68,53 +86,57 @@ neat.cacheData = function() {
     // Construct the URL
     var url = ['https://www.googleapis.com/fusiontables/v2/query'];
     url.push('?sql=' + encodedQuery);
-    url.push('&key=' + key);
+    url.push('&key=' + neat.key);
 
     url = url.join('');
 
-    $.ajax({
-        url: url,
-        dataType: 'jsonp',
-        success: function (data) {
+    return $.getJSON(url, function(data) {
+        rows = data['rows']
 
-            rows = data['rows']
+        for (var i in rows) {
+            var name = rows[i][0];
+            var start = new Date(Date.parse(rows[i][1]));
+            var end = new Date(Date.parse(rows[i][2]));
 
-            for (var i in rows) {
-                var name = rows[i][0];
-                var start = new Date(Date.parse(rows[i][1]));
-                var end = new Date(Date.parse(rows[i][2]));
+            for (var year = start.getFullYear(); year <= end.getFullYear(); ++year) {
+                if (neat.dataBase.profs[year] == undefined) {
+                    neat.dataBase.profs[year] = [name];
+                } else {
+                    neat.dataBase.profs[year].push(name);
+                }
 
-                for (var year = start.getFullYear(); year <= end.getFullYear(); ++year) {
-                    if (neat.dataBase.profs[year] == undefined) {
-                        neat.dataBase.profs[year] = [name];
-                    } else {
-                        neat.dataBase.profs[year].push(name);
-                    }
-
-                    if (neat.dataBase.profYears.indexOf(year) < 0) {
-                        neat.dataBase.profYears.push(year);
-                    }
+                if (neat.dataBase.profYears.indexOf(year) < 0) {
+                    neat.dataBase.profYears.push(year);
                 }
             }
         }
+        neat.dataBase.profYears.sort();
     });
+}
 
-    neat.dataBase.profYears.sort();
+/* 
+ * getEnrollmentData
+ *
+ * Pull and preprocess all the data from the enrolled fusion table.
+ *
+ * @author Stephen Robinson
+ * @since: Mar 5, 2015
+ */
+neat.getEnrollmentData = function() {
 
     /*************************************************************************
      * Enrollment data
      *
-     * Download the engineering enrollment data from the fusion table.
-     * The engineering enrollment fusion table has the columns.
-     *
-     * TODO: We need to further split our columns. We need to have students in
-     * each major & class. For now we are assuming that everyone is a senior.
+     * The engineering enrollment fusion table has the columns:
      *
      * Year: The year for this entry.
      * EE: The number of EE students enrolled this year. (All classes)
      * CS: The number of CS students enrolled this year. (All classes)
      * ME: The number of ME students enrolled this year. (All classes)
      * CE: The number of CE students enrolled this year. (All classes)
+     *
+     * TODO: We need to further split our columns. We need to have students in
+     * each major & class. For now we are assuming that everyone is a senior.
      *
      *************************************************************************/
 
@@ -127,57 +149,51 @@ neat.cacheData = function() {
     // Construct the URL
     var url = ['https://www.googleapis.com/fusiontables/v2/query'];
     url.push('?sql=' + encodedQuery);
-    url.push('&key=' + key);
+    url.push('&key=' + neat.key);
 
     url = url.join('');
 
-    $.ajax({
-        url: url,
-        dataType: 'jsonp',
-        success: function (data) {
+    return $.getJSON(url, function(data) {
+        rows = data['rows']
 
-            rows = data['rows']
+        for (var i in rows) {
+            var year = parseInt(rows[i][0]);
 
-            for (var i in rows) {
-                var year = parseInt(rows[i][0]);
+            var ee_freshman = 0; //XXX
+            var ee_sophmore = 0; //XXX
+            var ee_junior = 0; //XXX
+            var ee_senior = parseInt(rows[i][1]);
 
-                var ee_freshman = 0; //XXX
-                var ee_sophmore = 0; //XXX
-                var ee_junior = 0; //XXX
-                var ee_senior = parseInt(rows[i][1]);
+            var cs_freshman = 0; //XXX
+            var cs_sophmore = 0; //XXX
+            var cs_junior = 0; //XXX
+            var cs_senior = parseInt(rows[i][2]);
 
-                var cs_freshman = 0; //XXX
-                var cs_sophmore = 0; //XXX
-                var cs_junior = 0; //XXX
-                var cs_senior = parseInt(rows[i][2]);
+            var me_freshman = 0; //XXX
+            var me_sophmore = 0; //XXX
+            var me_junior = 0; //XXX
+            var me_senior = parseInt(rows[i][3]);
 
-                var me_freshman = 0; //XXX
-                var me_sophmore = 0; //XXX
-                var me_junior = 0; //XXX
-                var me_senior = parseInt(rows[i][3]);
+            var ce_freshman = 0; //XXX
+            var ce_sophmore = 0; //XXX
+            var ce_junior = 0; //XXX
+            var ce_senior = parseInt(rows[i][4]);
 
-                var ce_freshman = 0; //XXX
-                var ce_sophmore = 0; //XXX
-                var ce_junior = 0; //XXX
-                var ce_senior = parseInt(rows[i][4]);
+            neat.dataBase.enrollment[neat.EE][year] = [
+                ee_freshman, ee_sophmore, ee_junior, ee_senior
+            ];
+            neat.dataBase.enrollment[neat.CS][year] = [
+                cs_freshman, cs_sophmore, cs_junior, cs_senior
+            ];
+            neat.dataBase.enrollment[neat.ME][year] = [
+                me_freshman, me_sophmore, me_junior, me_senior
+            ];
+            neat.dataBase.enrollment[neat.CE][year] = [
+                ce_freshman, ce_sophmore, ce_junior, ce_senior
+            ];
 
-                neat.dataBase.enrollment[neat.EE][year] = [
-                    ee_freshman, ee_sophmore, ee_junior, ee_senior
-                ];
-                neat.dataBase.enrollment[neat.CS][year] = [
-                    cs_freshman, cs_sophmore, cs_junior, cs_senior
-                ];
-                neat.dataBase.enrollment[neat.ME][year] = [
-                    me_freshman, me_sophmore, me_junior, me_senior
-                ];
-                neat.dataBase.enrollment[neat.CE][year] = [
-                    ce_freshman, ce_sophmore, ce_junior, ce_senior
-                ];
-
-                neat.dataBase.enrollmentYears.push(year);
-            }
+            neat.dataBase.enrollmentYears.push(year);
         }
+        neat.dataBase.enrollmentYears.sort();
     });
-
-    neat.dataBase.enrollmentYears.sort();
 }
