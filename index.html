@@ -9,22 +9,23 @@
     <!-- 3rd party js -->
 	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
+    <script type="text/javascript" src="http://fgnass.github.io/spin.js/spin.min.js"></script>
 
     <!-- NEAT js -->
     <script type="text/javascript" src="neat.js" ></script>
     <script type="text/javascript" src="graph.js" ></script>
     <script type="text/javascript" src="data.js" ></script> 
-
-    <!-- Lastly we initialize the NEAT app. -->
-    <script>
-        document.addEventListener('DOMContentLoaded', neat.init, false);
-    </script>
+    <script type="text/javascript" src="animation.js" ></script> 
 
 </head>
 
 <body>
-<div id="vis_div" ng-app="" ng-controller="neat.namesController"> 
+<div id="spinner_div">
+    <!-- Create a spinner while NEAT app is setting itself up -->
+    <script>animation.createSpinner("spinner_div");</script>
+</div>
+<div id="vis_div" ng-app="" ng-controller="neat.namesController" class="hide_until_init"> 
 
     <div id="menu_div">
         <form action="" id="major_form">
@@ -38,9 +39,8 @@
     </div>
 
     <div id="graph_div">
-        This is text.
     </div>
 
-    <div class="clear"/>
+        <div class="clear"/>
 </div>
 </body>

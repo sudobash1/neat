@@ -13,8 +13,8 @@ var neat = neat || {};
 //Keep track of the current graph type.
 
 //graphType enum
-neat.MAJORS = "majors graph type";
-neat.PROFS = "profs graph type";
+neat.MAJORS = "Number of students declaired per major.";
+neat.PROFS = "Number of CS students compared to CS professors.";
 
 neat.graphType = neat.MAJORS;
 
@@ -63,10 +63,17 @@ neat.majors = ['Electrical Engineering',
  * @since: Mar 5, 2015
  */
 neat.init = function() {
+    hidden_elts = document.getElementsByClassName('hide_until_init')
+    for (i = 0; i < hidden_elts.length; i++){
+        hidden_elts[i].style.visibility = "visible";
+    }
+
     neat.cacheData();
     neat.updateChecks();
 
-    neat.createGraph();
+    animation.stopSpinners();
+
+    neat.createGraph(true);
 }
 
 /*
@@ -103,7 +110,8 @@ neat.updateGraph = function() {
         }
     }
 
-    neat.createGraph();
+    //We are just updating the graph, so do not animate it.
+    neat.createGraph(false);
 }
 
 /*
@@ -114,9 +122,10 @@ neat.updateGraph = function() {
  * @author Stephen Robinson
  * @since: Mar 5, 2015
  */
-neat.namesController = function ($scope) {
+neat.namesController = function ($scope, $timeout) {
     $scope.classes = neat.classes;
     $scope.majorsAbbr = neat.majorsAbbr;
     $scope.majors = neat.majors;
+    $timeout(neat.init, 0);
 }
 

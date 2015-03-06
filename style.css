@@ -16,6 +16,10 @@ div#menu_div {
  float: right;
 }
 
+.hide_until_init {
+ visibility: hidden;
+}
+
 .clear {
  clear: both;
 }
