@@ -65,6 +65,8 @@ neat.majors = ['Electrical Engineering',
 neat.init = function() {
     neat.cacheData();
     neat.updateChecks();
+
+    neat.createGraph();
 }
 
 /*

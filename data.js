@@ -16,6 +16,9 @@ neat.dataBase = {
     // of CS professors teaching that year.
     profs : {},
 
+    // A list of years we have profs data for. Sorted low to high.
+    profYears : [],
+
     // A list containing enrollemnt data for each major. For each major there
     // is a dict associating years to a list containing the enrollment for
     // each class.
@@ -25,6 +28,9 @@ neat.dataBase = {
         {},
         {},
     ],
+
+    // A list of years we have enrollment data for. Sorted low to high.
+    enrollmentYears : [],
 };
 
 /*
@@ -84,10 +90,16 @@ neat.cacheData = function() {
                     } else {
                         neat.dataBase.profs[year].push(name);
                     }
+
+                    if (neat.dataBase.profYears.indexOf(year) < 0) {
+                        neat.dataBase.profYears.push(year);
+                    }
                 }
             }
         }
     });
+
+    neat.dataBase.profYears.sort();
 
     /*************************************************************************
      * Enrollment data
@@ -127,27 +139,27 @@ neat.cacheData = function() {
             rows = data['rows']
 
             for (var i in rows) {
-                var year = rows[i][0];
+                var year = parseInt(rows[i][0]);
 
                 var ee_freshman = 0; //XXX
                 var ee_sophmore = 0; //XXX
                 var ee_junior = 0; //XXX
-                var ee_senior = rows[i][1];
+                var ee_senior = parseInt(rows[i][1]);
 
                 var cs_freshman = 0; //XXX
                 var cs_sophmore = 0; //XXX
                 var cs_junior = 0; //XXX
-                var cs_senior = rows[i][2];
+                var cs_senior = parseInt(rows[i][2]);
 
                 var me_freshman = 0; //XXX
                 var me_sophmore = 0; //XXX
                 var me_junior = 0; //XXX
-                var me_senior = rows[i][3];
+                var me_senior = parseInt(rows[i][3]);
 
                 var ce_freshman = 0; //XXX
                 var ce_sophmore = 0; //XXX
                 var ce_junior = 0; //XXX
-                var ce_senior = rows[i][4];
+                var ce_senior = parseInt(rows[i][4]);
 
                 neat.dataBase.enrollment[neat.EE][year] = [
                     ee_freshman, ee_sophmore, ee_junior, ee_senior
@@ -161,7 +173,11 @@ neat.cacheData = function() {
                 neat.dataBase.enrollment[neat.CE][year] = [
                     ce_freshman, ce_sophmore, ce_junior, ce_senior
                 ];
+
+                neat.dataBase.enrollmentYears.push(year);
             }
         }
     });
+
+    neat.dataBase.enrollmentYears.sort();
 }
