@@ -112,8 +112,12 @@ neat.updateGraph = function() {
         }
     }
 
-    //We are just updating the graph, so do not animate it.
-    neat.createGraph(false);
+    if (neat.selectedMajors.length > 0) {
+        //We are just updating the graph, so do not animate it.
+        neat.createGraph(false);
+    } else {
+        document.getElementById("graph_div").innerHTML = "Please select majors to display."
+    }
 }
 
 /*
