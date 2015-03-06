@@ -28,9 +28,9 @@
 
     <div id="menu_div">
         <form action="" id="major_form">
-            <div data-ng-repeat="major in majorsAbbr">
-                <input type="checkbox" id="{{major}}" onclick="neat.updateGraph();">
-                    {{major}}
+            <div data-ng-repeat="i in [0,1,2,3]">
+                <input type="checkbox" id="{{majorsAbbr[i]}}" onclick="neat.updateGraph();">
+                    {{majors[i]}}
                 </input>
                 <br/>
             </div>
