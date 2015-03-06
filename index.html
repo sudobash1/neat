@@ -6,36 +6,41 @@
 
     <link rel="stylesheet" type="text/css" href="style.css" />
 	
+    <!-- 3rd party js -->
 	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="viz.js" ></script>
-	
+    <script type="text/javascript" src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+
+    <!-- NEAT js -->
+    <script type="text/javascript" src="neat.js" ></script>
+    <script type="text/javascript" src="graph.js" ></script>
+    <script type="text/javascript" src="data.js" ></script> 
+
+    <!-- Lastly we initialize the NEAT app. -->
+    <script>
+        document.addEventListener('DOMContentLoaded', neat.init, false);
+    </script>
+
 </head>
 
 <body>
-<div id="vis_div">
+<div id="vis_div" ng-app="" ng-controller="neat.namesController"> 
+
     <div id="menu_div">
-        <form action="" id="class_form">
-            <input type="checkbox" name="freshman" value="freshman" checked>
-                Freshman
-            </input>
-            <br/>
-            <input type="checkbox" name="sophmore" value="sophmore" checked>
-                Sophmore
-            </input>
-            <br/>
-            <input type="checkbox" name="junior" value="junior" checked>
-                Junior
-            </input>
-            <br/>
-            <input type="checkbox" name="senior" value="senior" checked>
-                Senior
-            </input>
+        <form action="" id="major_form">
+            <div data-ng-repeat="major in majorsAbbr">
+                <input type="checkbox" id="{{major}}" onclick="neat.updateGraph();">
+                    {{major}}
+                </input>
+                <br/>
+            </div>
         </form>
     </div>
+
     <div id="graph_div">
-    This is text.
+        This is text.
     </div>
+
     <div class="clear"/>
 </div>
 </body>
