@@ -64,6 +64,7 @@ neat.createGraph = function (bAnimate) {
             legend: { position: 'bottom' },
             width: 500,
             height: 500,
+			hAxis: {format: '####'},
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('graph_div'));
