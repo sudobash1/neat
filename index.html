@@ -1,22 +1,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title>NEAT</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>NEAT</title>
 
-    <link rel="stylesheet" type="text/css" href="style.css" />
-	
-    <!-- 3rd party js -->
-	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
-    <script type="text/javascript" src="http://fgnass.github.io/spin.js/spin.min.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css" />
 
-    <!-- NEAT js -->
-    <script type="text/javascript" src="neat.js" ></script>
-    <script type="text/javascript" src="graph.js" ></script>
-    <script type="text/javascript" src="data.js" ></script> 
-    <script type="text/javascript" src="animation.js" ></script> 
+<!-- 3rd party js -->
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
+<script type="text/javascript" src="http://fgnass.github.io/spin.js/spin.min.js"></script>
+
+<!-- NEAT js -->
+<script type="text/javascript" src="neat.js" ></script>
+<script type="text/javascript" src="graph.js" ></script>
+<script type="text/javascript" src="data.js" ></script> 
+<script type="text/javascript" src="animation.js" ></script> 
 
 </head>
 
@@ -25,22 +25,42 @@
     <!-- Create a spinner while NEAT app is setting itself up -->
     <script>animation.createSpinner("spinner_div");</script>
 </div>
+
 <div id="vis_div" ng-app="" ng-controller="neat.namesController" class="hide_until_init"> 
 
-    <div id="menu_div">
-        <form action="" id="major_form">
-            <div data-ng-repeat="i in [0,1,2,3]">
-                <input type="checkbox" id="{{majorsAbbr[i]}}" onclick="neat.updateGraph();">
-                    {{majors[i]}}
-                </input>
-                <br/>
-            </div>
-        </form>
+    <div id="majors_tab_div" class="tab" onclick="neat.switchTabTo(neat.MAJORS)">
+        CS &amp; EGR Enrollment over time.
     </div>
 
-    <div id="graph_div">
+    <div id="profs_tab_div" class="tab" onclick="neat.switchTabTo(neat.PROFS)">
+        CS Students &amp; Faculty over time.
     </div>
+
+    <div class="clear"/>
+
+    <div id="majors_disp_div" class="app_container">
+        <div id="menu_div">
+            <form action="" id="major_form">
+                <div data-ng-repeat="i in [0,1,2,3]">
+                    <input type="checkbox" id="{{majorsAbbr[i]}}" onclick="neat.updateGraph();">
+                    {{majors[i]}}
+                    </input>
+                    <br/>
+                </div>
+            </form>
+        </div>
+
+        <div id="graph_div">
+        </div>
 
         <div class="clear"/>
-</div>
+        </div>
+    </div>
+
+    <div id="profs_disp_div" style="visibility: hidden; display: none;" class="app_container">
+        <h1>Nothing to see here!</h1>
+        <h2>Move along...</h2>
+        <div class="clear"/>
+        </div>
+    </div>
 </body>

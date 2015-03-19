@@ -1,7 +1,6 @@
 div#vis_div {
  width: 90%;
  margin-left: 5%;
- background-color: rgb(255,0,0);
 }
 
 div#graph_div {
@@ -14,6 +13,29 @@ div#menu_div {
  background-color: rgb(255,0,255);
  padding: 2em 2em 2em 2em;
  float: right;
+}
+
+div.tab {
+ background-color: rgb(80,80,255);
+ padding: .5em .5em .25em .5em;
+ float: left;
+ border-radius: 15px 15px 0px 0px;
+ cursor: pointer;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+div.tab:hover {
+ background-color: rgb(130,130,255);
+}
+
+div.app_container {
+ background-color: rgb(255,0,0);
 }
 
 .hide_until_init {

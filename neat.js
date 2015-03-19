@@ -16,6 +16,11 @@ var neat = neat || {};
 neat.MAJORS = "Number of students declaired per major.";
 neat.PROFS = "Number of CS students compared to CS professors.";
 
+//the display divs for the different data the app can display
+neat.MAJORS_DISP_DIV = "majors_disp_div";
+neat.PROFS_DISP_DIV = "profs_disp_div";
+
+//the current graph type
 neat.graphType = neat.MAJORS;
 
 //Enum for the different classes
@@ -91,6 +96,38 @@ neat.updateChecks = function() {
     for (i = neat.majors.length - 1; i >= 0; --i) {
         var selected = (neat.selectedMajors.indexOf(i) >= 0);
         document.getElementById(neat.majorsAbbr[i]).checked = selected; 
+    }
+}
+
+/*
+ * switchTabTo
+ *
+ * Perform a swich to change the type of data the NEAT app is displaying.
+ *
+ * @author Stephen Robinson
+ * @since: Mar 19, 2015
+ */
+neat.switchTabTo = function(graphType) {
+    if (graphType != neat.graphType) {
+        neat.graphType = graphType;
+        neat.updateChecks();
+
+        majorsDiv = document.getElementById(neat.MAJORS_DISP_DIV);
+        profsDiv = document.getElementById(neat.PROFS_DISP_DIV);
+
+        if (graphType == neat.MAJORS) {
+            majorsDiv.style.visibility = "visible";
+            majorsDiv.style.display = "block";
+            profsDiv.style.visibility = "hidden";
+            profsDiv.style.display = "none";
+
+        } else {
+            majorsDiv.style.visibility = "hidden";
+            majorsDiv.style.display = "none";
+            profsDiv.style.visibility = "visible"
+            profsDiv.style.display = "block";
+
+        }
     }
 }
 
