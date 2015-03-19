@@ -19,6 +19,8 @@ neat.PROFS = "Number of CS students compared to CS professors.";
 //the display divs for the different data the app can display
 neat.MAJORS_DISP_DIV = "majors_disp_div";
 neat.PROFS_DISP_DIV = "profs_disp_div";
+neat.MAJORS_TAB_DIV = "majors_tab_div";
+neat.PROFS_TAB_DIV = "profs_tab_div";
 
 //the current graph type
 neat.graphType = neat.MAJORS;
@@ -115,18 +117,29 @@ neat.switchTabTo = function(graphType) {
         majorsDiv = document.getElementById(neat.MAJORS_DISP_DIV);
         profsDiv = document.getElementById(neat.PROFS_DISP_DIV);
 
+        majorsTab = document.getElementById(neat.MAJORS_TAB_DIV);
+        profsTab = document.getElementById(neat.PROFS_TAB_DIV);
+
         if (graphType == neat.MAJORS) {
             majorsDiv.style.visibility = "visible";
             majorsDiv.style.display = "block";
+
+            majorsTab.className = "tab";
+
             profsDiv.style.visibility = "hidden";
             profsDiv.style.display = "none";
 
+            profsTab.className = "tab non_selected_tab";
         } else {
             majorsDiv.style.visibility = "hidden";
             majorsDiv.style.display = "none";
+
+            majorsTab.className = "tab non_selected_tab";
+
             profsDiv.style.visibility = "visible"
             profsDiv.style.display = "block";
 
+            profsTab.className = "tab";
         }
     }
 }

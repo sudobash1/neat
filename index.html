@@ -28,15 +28,15 @@
 
 <div id="vis_div" ng-app="" ng-controller="neat.namesController" class="hide_until_init"> 
 
-    <div id="majors_tab_div" class="tab" onclick="neat.switchTabTo(neat.MAJORS)" tabindex="1">
+    <div id="majors_tab_div" onclick="neat.switchTabTo(neat.MAJORS)" tabindex="1" class="tab">
         CS &amp; EGR Enrollment over time.
     </div>
 
-    <div id="profs_tab_div" class="tab" onclick="neat.switchTabTo(neat.PROFS)" tabindex="2">
+    <div id="profs_tab_div" onclick="neat.switchTabTo(neat.PROFS)" tabindex="2" class="tab non_selected_tab">
         CS Students &amp; Faculty over time.
     </div>
 
-    <div class="clear"/>
+    <div class="clear"> </div>
 
     <div id="majors_disp_div" class="app_container">
         <div id="menu_div">
@@ -50,17 +50,18 @@
             </form>
         </div>
 
-        <div id="graph_div">
-        </div>
+        <div id="graph_div" class="graph_div"></div>
 
-        <div class="clear"/>
-        </div>
+        <div class="clear"></div>
     </div>
 
     <div id="profs_disp_div" style="visibility: hidden; display: none;" class="app_container">
         <h1>Nothing to see here!</h1>
         <h2>Move along...</h2>
-        <div class="clear"/>
-        </div>
+        <div class="clear"> </div>
     </div>
+
+</div>
+
+
 </body>
