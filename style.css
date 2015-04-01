@@ -1,3 +1,12 @@
+@font-face {
+ font-family: "TheSans-Plain";
+ src: url('res/TheSans-Plain.ttf');
+}
+
+body {
+ font-family: TheSans-Plain;
+}
+
 #vis_div {
  width: 90%;
  margin-left: 5%;
@@ -14,16 +23,16 @@
 }
 
 .tab {
- background-color: rgb(255,0,0);
+ background-color: rgb(255,255,255);
 
  padding: .5em .5em .25em .5em;
  float: left;
  border-radius: 15px 15px 0px 0px;
  cursor: pointer;
 
- border-left: 5px solid rgb(20,20,235);
- border-right: 5px solid rgb(20,20,235);
- border-top: 5px solid rgb(20,20,235);
+ border-left: 5px solid #25205e;
+ border-right: 5px solid #25205e;
+ border-top: 5px solid #25205e;
 
  margin-top: 0px;
  padding-bottom: 5px;
@@ -37,18 +46,18 @@
 }
 
 .non_selected_tab:hover {
- background-color: rgb(255,0,0);
+ background-color: rgb(255,255,255);
 }
 
 .non_selected_tab {
- background-color: rgb(185,70,70);
+ background-color: #7fb0cd;
  padding-bottom: 0px !important;
 }
 
 .app_container {
  border-radius: 0px 15px 15px 15px;
- border: 5px solid rgb(20,20,235);
- background-color: rgb(255,0,0);
+ border: 5px solid #25205e;
+ background-color: rgb(255,255,255);
  margin-top: -5px;
 }
 
