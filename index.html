@@ -20,7 +20,7 @@
 
 </head>
 
-<body>
+<body  onresize="neat.resizeGraph()">
 <div id="spinner_div">
     <!-- Create a spinner while NEAT app is setting itself up -->
     <script>animation.createSpinner("spinner_div");</script>
@@ -39,7 +39,7 @@
     <div class="clear"> </div>
 
     <div id="majors_disp_div" class="app_container">
-        <div id="menu_div">
+        <div id="majors_menu_div" class="menu_div" >
             <form action="" id="major_form">
                 <div data-ng-repeat="i in [0,1,2,3]">
                     <input type="checkbox" id="{{majorsAbbr[i]}}" onclick="neat.updateGraph();">
@@ -58,6 +58,8 @@
     </div>
 
     <div id="profs_disp_div" style="visibility: hidden; display: none;" class="app_container">
+        <div id="profs_menu_div" class="menu_div" >
+        </div>
         <h1>Nothing to see here!</h1>
         <h2>Move along...</h2>
         <div class="clear"> </div>

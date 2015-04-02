@@ -3,21 +3,41 @@
  src: url('res/TheSans-Plain.ttf');
 }
 
+html, body {
+ min-width: 800px;
+ min-height: 550px;
+}
+
 body {
+ position: absolute;
+ top: 0;
+ bottom: 0;
+ left: 0;
+ right: 0;
  font-family: TheSans-Plain;
 }
 
 #vis_div {
- width: 90%;
- margin-left: 5%;
+
+ width: 70%;
+ margin-left: 15%;
+
+ min-width: 300px;
+ //max-width: 2000px;
+
+ height: 70%;
+ margin-top: 5%;
+
+ min-height: 300px;
+ //max-height: 1000px;
 }
 
 .graph_div { 
- padding: 2em 2em 2em 2em;
+ margin-top 5%: 
  float: left;
 }
 
-#menu_div {
+.menu_div {
  padding: 2em 2em 2em 2em;
  float: right;
 }
@@ -59,6 +79,7 @@ body {
  border: 5px solid #25205e;
  background-color: rgb(255,255,255);
  margin-top: -5px;
+ height: 100%;
 }
 
 .hide_until_init {

@@ -110,7 +110,9 @@ neat.updateChecks = function() {
  * @since: Mar 19, 2015
  */
 neat.switchTabTo = function(graphType) {
+
     if (graphType != neat.graphType) {
+
         neat.graphType = graphType;
         neat.updateChecks();
 
@@ -141,6 +143,8 @@ neat.switchTabTo = function(graphType) {
 
             profsTab.className = "tab";
         }
+
+        neat.updateGraph();
     }
 }
 

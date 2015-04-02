@@ -9,6 +9,11 @@
 
 var neat = neat || {};
 
+neat.graph_options = {
+    legend: { position: 'bottom' },
+    hAxis: {format: '####'},
+};
+
 google.load('visualization', '1.1', {packages: ['corechart']});
 
 /*
@@ -25,7 +30,7 @@ neat.createGraph = function (bAnimate) {
     if (neat.graphType == neat.MAJORS) {
        
         //Setup the DataTable
-        var data = new google.visualization.DataTable();
+        data = new google.visualization.DataTable();
         data.addColumn('number', 'Year');
         for (i in neat.selectedMajors) {
             major = neat.selectedMajors[i];
@@ -59,18 +64,42 @@ neat.createGraph = function (bAnimate) {
         //Now with the dataTable set up, we may create the actual graph.
         //Code based off of https://developers.google.com/chart/interactive/docs/gallery/linechart 
         
-        var options = {
-            title: neat.graphType,
-            legend: { position: 'bottom' },
-            width: 500,
-            height: 500,
-			hAxis: {format: '####'},
-        };
+        neat.graph_data = data;
 
-        var chart = new google.visualization.LineChart(document.getElementById('majors_graph_div'));
-        chart.draw(data, options);
+        neat.graph_options.title = neat.graphType;
+        neat.current_chart = new google.visualization.LineChart(document.getElementById('majors_graph_div'));
 
+        neat.resizeGraph();
     } else {
         //TODO
     }
 }
+
+/*
+ * resizeGraph
+ *
+ * Resizes the current graph 
+ * parameter. If it is true, then the graph is animated when drawn.
+ *
+ * @author Stephen Robinson
+ * @since: Mar 5, 2015
+ */
+neat.resizeGraph = function() {
+
+    var disp_div;
+    var menu_div;
+
+    if (neat.graphType == neat.MAJORS) {
+        disp_div = document.getElementById("majors_disp_div");
+        menu_div = document.getElementById("majors_menu_div");
+    } else {
+        disp_div = document.getElementById("profs_disp_div");
+        menu_div = document.getElementById("profs_menu_div");
+    }
+
+    neat.graph_options.height = disp_div.offsetHeight * .84;
+    neat.graph_options.width = (disp_div.offsetWidth - menu_div.offsetWidth);
+
+    neat.current_chart.draw(neat.graph_data, neat.graph_options);
+}
+
