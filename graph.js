@@ -16,8 +16,15 @@ neat.graph_options = {
         easing: 'out',
     },
     legend: { position: 'bottom' },
-    hAxis: {format: '####', title: 'Year (Spring Semester)'},
-    vAxis: {title: 'Students Enrolled', minValue: 0},
+    hAxis: {
+        format: '####',
+        title: 'Year (Spring Semester)'
+    },
+    vAxis: {
+        title: 'Students Enrolled',
+        format: '#',
+        minValue: 0
+    },
 };
 
 neat.line_options = {};
