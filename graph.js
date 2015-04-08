@@ -10,6 +10,11 @@
 var neat = neat || {};
 
 neat.graph_options = {
+    animation: {
+        startup: true,
+        duration: 1000,
+        easing: 'out',
+    },
     legend: { position: 'bottom' },
     hAxis: {format: '####'},
 };
@@ -25,13 +30,12 @@ google.load('visualization', '1.1', {packages: ['corechart']});
 /*
  * createGraph
  *
- * Creates a graph based on the internal state of the NEAT app. Accepts one
- * parameter. If it is true, then the graph is animated when drawn.
+ * Creates a graph based on the internal state of the NEAT app.
  *
  * @author Stephen Robinson
  * @since: Mar 5, 2015
  */
-neat.createGraph = function (bAnimate) {
+neat.createGraph = function () {
 
     if (neat.graphType == neat.MAJORS) {
        
@@ -85,6 +89,9 @@ neat.createGraph = function (bAnimate) {
         neat.current_chart = new google.visualization.LineChart(document.getElementById('majors_graph_div'));
 
         neat.resizeGraph();
+
+        //After we create the graph for the first time, remove animation
+        neat.graph_options.animation = null;
     } else {
         //TODO
     }

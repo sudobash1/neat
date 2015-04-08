@@ -81,7 +81,7 @@ neat.init = function() {
             hidden_elts[i].style.visibility = "visible";
         }
 
-        neat.createGraph(true);
+        neat.createGraph();
     });
 }
 
