@@ -17,7 +17,7 @@ neat.graph_options = {
     },
     legend: { position: 'bottom' },
     hAxis: {format: '####', title: 'Year (Spring Semester)'},
-    vAxis: {title: 'Students Enrolled'}
+    vAxis: {title: 'Students Enrolled', minValue: 0},
 };
 
 neat.line_options = {};
@@ -87,7 +87,6 @@ neat.createGraph = function () {
                 neat.line_options[neat.selectedMajors[i]];
         }
 
-        neat.graph_options.vAxis.minValue = neat.dataBase.maxEnrollent;
         neat.graph_options.vAxis.maxValue = neat.dataBase.maxEnrollent;
 
         neat.current_chart = new google.visualization.LineChart(document.getElementById('majors_graph_div'));
