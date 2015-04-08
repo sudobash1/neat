@@ -14,6 +14,12 @@ neat.graph_options = {
     hAxis: {format: '####'},
 };
 
+neat.line_options = {};
+neat.line_options[neat.EE] = {color: 'green'};
+neat.line_options[neat.CS] = {color: 'blue'};
+neat.line_options[neat.ME] = {color: 'red'};
+neat.line_options[neat.CE] = {color: 'gray'};
+
 google.load('visualization', '1.1', {packages: ['corechart']});
 
 /*
@@ -66,7 +72,16 @@ neat.createGraph = function (bAnimate) {
         
         neat.graph_data = data;
 
+        //Set the title of the graph to be appropriate to the tab we are on.
         neat.graph_options.title = neat.graphType;
+
+        //Set the properties specific to each line
+        neat.graph_options.series = {};
+        for (var i=0; i < neat.selectedMajors.length; ++i) {
+            neat.graph_options.series[i] = 
+                neat.line_options[neat.selectedMajors[i]];
+        }
+
         neat.current_chart = new google.visualization.LineChart(document.getElementById('majors_graph_div'));
 
         neat.resizeGraph();
