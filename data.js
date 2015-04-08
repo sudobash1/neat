@@ -19,7 +19,7 @@ neat.dataBase = {
     // A list of years we have profs data for. Sorted low to high.
     profYears : [],
 
-    // A list containing enrollemnt data for each major. For each major there
+    // A list containing enrollment data for each major. For each major there
     // is a dict associating years to a list containing the enrollment for
     // each class.
     enrollment : [
@@ -31,6 +31,9 @@ neat.dataBase = {
 
     // A list of years we have enrollment data for. Sorted low to high.
     enrollmentYears : [],
+
+    //The maximum total enrollment for a year in any discipline,
+    maxEnrollent: 1,
 };
 
 
@@ -193,6 +196,21 @@ neat.getEnrollmentData = function() {
             ];
 
             neat.dataBase.enrollmentYears.push(year);
+
+            //Determine what the maximum enrollment is so we can set the vAxis
+            //height.
+            yearsMaxEnrollent = Math.max(
+                ee_freshman + ee_sophmore + ee_junior + ee_senior,
+                cs_freshman + cs_sophmore + cs_junior + cs_senior,
+                me_freshman + me_sophmore + me_junior + me_senior,
+                ce_freshman + ce_sophmore + ce_junior + ce_senior
+            );
+
+            neat.dataBase.maxEnrollent = Math.max(
+                yearsMaxEnrollent,
+                neat.dataBase.maxEnrollent
+            );
+
         }
         neat.dataBase.enrollmentYears.sort();
     });
