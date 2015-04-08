@@ -35,6 +35,8 @@ body {
 .graph_div { 
  margin-top 5%: 
  float: left;
+ width: 10px;
+ height: 10px;
 }
 
 .menu_div {

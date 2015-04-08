@@ -112,8 +112,12 @@ neat.resizeGraph = function() {
         menu_div = document.getElementById("profs_menu_div");
     }
 
-    neat.graph_options.height = disp_div.offsetHeight * .84;
-    neat.graph_options.width = (disp_div.offsetWidth - menu_div.offsetWidth);
+    //Calculate the dimensions of the graph to fit ideally.
+    height = disp_div.offsetHeight * .84;
+    width = (disp_div.offsetWidth - menu_div.offsetWidth);
+
+    neat.graph_options.height = height
+    neat.graph_options.width = width
 
     neat.current_chart.draw(neat.graph_data, neat.graph_options);
 }
