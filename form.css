@@ -9,6 +9,14 @@ label {
  /*We want to display our custom check boxes right next to the labels*/
  position: relative;
  display: inline-block;
+
+ /*Do not allow the label text to be selected*/
+ -webkit-touch-callout: none;
+ -webkit-user-select: none;
+ -khtml-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
 }
 
 /*Hide the browsers default */
