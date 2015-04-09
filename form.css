@@ -1,0 +1,59 @@
+label {
+ cursor: pointer;
+
+ /*Make room for the checkbox*/
+ padding-left: 2em;
+
+ font-size: 15px;
+
+ /*We want to display our custom check boxes right next to the labels*/
+ position: relative;
+ display: inline-block;
+}
+
+/*Hide the browsers default */
+input[type=radio],
+input[type=checkbox] {
+ display: none;
+}
+
+label:before {
+ /*By default our boxes will be empty (no dot or check)*/
+ content: "";
+ text-align: center;
+
+ /*We want to display our custom check boxes right next to the labels*/
+ display: inline-block;
+ position: absolute;
+ left: 0;
+ bottom: 2px;
+
+ /*Our boxes are about the size of one M*/
+ width: 1em;
+ height: 1em;
+
+ background-color: #7fb0cd;
+ border: 2px solid #25205e;
+ border-radius: 3px;
+
+ color: white;
+ line-height: 1em;
+
+ text-shadow: 1px 1px 1px #25205e;
+}
+
+/*Radio buttons are round.*/
+input[type=radio] + label:before {
+ border-radius: 1em;
+}
+
+input[type=radio]:checked + label:before {
+ /*The unicode for the medium dot character*/
+ content: "\26AB";
+}
+
+input[type=checkbox]:checked + label:before {
+ /*The unicode for the check character*/
+ content: "\2713";
+}
+
