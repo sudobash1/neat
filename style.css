@@ -39,10 +39,11 @@ body {
 }
 
 #wrapper {
- width: 100%;
  position: absolute;
  top: 120px;
  bottom: 30px;
+ left: 12px;
+ right: 12px;
 }
 
 #vis_div {
@@ -55,12 +56,6 @@ body {
 
  height: 80%;
  margin-top: 3%;
-
- /*
- position: absolute;
- top: 200px
- bottom: 200px
- */
 
  min-height: 300px;
  //max-height: 1000px;
