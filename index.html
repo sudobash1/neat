@@ -27,44 +27,58 @@
     <script>animation.createSpinner("spinner_div");</script>
 </div>
 
-<div id="vis_div" ng-app="" ng-controller="neat.namesController" class="hide_until_init"> 
+<div id="container">
 
-    <div id="majors_tab_div" onclick="neat.switchTabTo(neat.MAJORS)" tabindex="1" class="tab">
-        CS &amp; EGR Enrollment over time.
-    </div>
-
-    <div id="profs_tab_div" onclick="neat.switchTabTo(neat.PROFS)" tabindex="2" class="tab non_selected_tab">
-        CS Students &amp; Faculty over time.
-    </div>
-
-    <div class="clear"> </div>
-    <div id="majors_disp_div" class="app_container">
-        <div id="majors_menu_div" class="menu_div" >
-
-            <form action="" id="major_form">
-                <div data-ng-repeat="i in [0,1,2,3]">
-                    <input type="checkbox" id="{{majorsAbbr[i]}}" onclick="neat.updateGraph();">
-                    <label for="{{majorsAbbr[i]}}">{{majors[i]}}</label>
-                    <br/>
-                </div>
-            </form>
-        </div>
-
-        <div class="graph_div">
-            <div id="majors_graph_div"></div>
-        </div>
-
+    <div id="header_div">
+        <img id="logo_img" alt="University of Portland Logo" src="res/up_logo.png">
         <div class="clear"></div>
     </div>
 
-    <div id="profs_disp_div" style="visibility: hidden; display: none;" class="app_container">
-        <div id="profs_menu_div" class="menu_div" >
+    <div id="wrapper">
+        <div id="vis_div" ng-app="" ng-controller="neat.namesController" class="hide_until_init"> 
+
+            <div id="majors_tab_div" onclick="neat.switchTabTo(neat.MAJORS)" tabindex="1" class="tab">
+                CS &amp; EGR Enrollment over time.
+            </div>
+
+            <div id="profs_tab_div" onclick="neat.switchTabTo(neat.PROFS)" tabindex="2" class="tab non_selected_tab">
+                CS Students &amp; Faculty over time.
+            </div>
+
+            <div class="clear"> </div>
+            <div id="majors_disp_div" class="app_container">
+                <div id="majors_menu_div" class="menu_div" >
+
+                    <form action="" id="major_form">
+                        <div data-ng-repeat="i in [0,1,2,3]">
+                            <input type="checkbox" id="{{majorsAbbr[i]}}" onclick="neat.updateGraph();">
+                            <label for="{{majorsAbbr[i]}}">{{majors[i]}}</label>
+                            <br/>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="graph_div">
+                    <div id="majors_graph_div"></div>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+
+            <div id="profs_disp_div" style="visibility: hidden; display: none;" class="app_container">
+                <div id="profs_menu_div" class="menu_div" >
+                </div>
+                <h1>Nothing to see here!</h1>
+                <h2>Move along...</h2>
+                <div class="clear"> </div>
+            </div>
+            <div class="clear"></div>
         </div>
-        <h1>Nothing to see here!</h1>
-        <h2>Move along...</h2>
-        <div class="clear"> </div>
     </div>
 
+    <div id="footer_div">
+        University of Portland logo &copy; Univeristy of Portland
+    </div>
 </div>
 
 
