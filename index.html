@@ -49,13 +49,12 @@
             <div id="majors_disp_div" class="app_container">
                 <div id="majors_menu_div" class="menu_div" >
 
-                    <form action="" id="major_form">
-                        <div data-ng-repeat="i in [0,1,2,3]">
-                            <input type="checkbox" id="{{majorsAbbr[i]}}" onclick="neat.updateGraph();">
-                            <label for="{{majorsAbbr[i]}}">{{majors[i]}}</label>
-                            <br/>
-                        </div>
-                    </form>
+                    <div data-ng-repeat="i in [0,1,2,3]">
+                        <input type="checkbox" id="{{majorsAbbr[i]}}" onclick="neat.updateGraph();">
+                        <label for="{{majorsAbbr[i]}}">{{majors[i]}}</label>
+                        <br/>
+                    </div>
+
                 </div>
 
                 <div class="graph_div">
