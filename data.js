@@ -14,27 +14,28 @@ neat.dataBase = {
 
     // A dictionary with keys being year numbers and the items being a list
     // of CS professors teaching that year.
-    profs : {},
+    profs: {},
 
     // A list of years we have profs data for. Sorted low to high.
-    profYears : [],
+    profYears: [],
 
-    // A list containing enrollment data for each major. For each major there
-    // is a dict associating years to a list containing the enrollment for
-    // each class.
-    enrollment : [
-        {},
-        {},
-        {},
-        {},
-    ],
+    // An object containing enrollment data for each major. For each major
+    // there is a dict associating years to a list containing the enrollment
+    // for each class.
+    enrollment: {},
 
     // A list of years we have enrollment data for. Sorted low to high.
-    enrollmentYears : [],
+    enrollmentYears: [],
 
     //The maximum total enrollment for a year in any discipline,
     maxEnrollent: 1,
 };
+
+//Initialize the enrollment data to an empty array for each major
+neat.dataBase.enrollment[neat.CS] = {};
+neat.dataBase.enrollment[neat.EE] = {};
+neat.dataBase.enrollment[neat.ME] = {};
+neat.dataBase.enrollment[neat.CE] = {};
 
 
 //Our Google API key.
@@ -143,7 +144,7 @@ neat.getEnrollmentData = function() {
      *
      *************************************************************************/
 
-    var enrollmentTable = '1IZjUJRBNObS2hIUrCW44zTaLvvS8RgFSOmBT3vBR';
+    var enrollmentTable = '1oBObMleyP9ci-LNUlSS5zyDX21aRa93lmVvLLiik';
 
     // get the data from the enrollment data fusion table
     var query = "SELECT * FROM " + enrollmentTable;
@@ -162,25 +163,25 @@ neat.getEnrollmentData = function() {
         for (var i in rows) {
             var year = parseInt(rows[i][0]);
 
-            var ee_freshman = 0; //XXX
-            var ee_sophmore = 0; //XXX
-            var ee_junior = 0; //XXX
-            var ee_senior = parseInt(rows[i][1]);
-
-            var cs_freshman = 0; //XXX
-            var cs_sophmore = 0; //XXX
-            var cs_junior = 0; //XXX
-            var cs_senior = parseInt(rows[i][2]);
-
-            var me_freshman = 0; //XXX
-            var me_sophmore = 0; //XXX
-            var me_junior = 0; //XXX
-            var me_senior = parseInt(rows[i][3]);
-
-            var ce_freshman = 0; //XXX
-            var ce_sophmore = 0; //XXX
-            var ce_junior = 0; //XXX
+            var ce_freshman = parseInt(rows[i][1]);
+            var ce_sophmore = parseInt(rows[i][2]);
+            var ce_junior = parseInt(rows[i][3]);
             var ce_senior = parseInt(rows[i][4]);
+
+            var cs_freshman = parseInt(rows[i][5]);
+            var cs_sophmore = parseInt(rows[i][6]);
+            var cs_junior = parseInt(rows[i][7]);
+            var cs_senior = parseInt(rows[i][8]);
+
+            var ee_freshman = parseInt(rows[i][9]);
+            var ee_sophmore = parseInt(rows[i][10]);
+            var ee_junior = parseInt(rows[i][11]);
+            var ee_senior = parseInt(rows[i][12]);
+
+            var me_freshman = parseInt(rows[i][13]);
+            var me_sophmore = parseInt(rows[i][14]);
+            var me_junior = parseInt(rows[i][15]);
+            var me_senior = parseInt(rows[i][16]);
 
             neat.dataBase.enrollment[neat.EE][year] = [
                 ee_freshman, ee_sophmore, ee_junior, ee_senior

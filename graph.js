@@ -55,26 +55,44 @@ neat.createGraph = function () {
         for (i in neat.selectedMajors) {
             major = neat.selectedMajors[i];
             data.addColumn('number', neat.majorsAbbr[major]);
+            data.addColumn({type: 'string', role: 'tooltip'});
         }
 
         //All the data for graph
         rows = [];
 
         //Add the data to the DataTable
-        for (i in neat.dataBase.enrollmentYears) {
+        for (var i=0; i < neat.dataBase.enrollmentYears.length; ++i) {
 
             var year = neat.dataBase.enrollmentYears[i];
             var row = [year];
 
-            for (j in neat.selectedMajors) {
+            for (var j=0; j < neat.selectedMajors.length; ++j) {
+
                 var major = neat.selectedMajors[j];
                 var sum = 0;
+                var comment = "";
+
                 //Add up data for all selected classes
-                for (k in neat.selectedClasses) { 
+                for (var k=0; k < neat.selectedClasses.length; ++k) {
+
                     var cls = neat.selectedClasses[k]
-                    sum += neat.dataBase.enrollment[major][year][cls];
+                    var classEnrollemnt = 
+                        neat.dataBase.enrollment[major][year][cls];
+                    sum += classEnrollemnt;
+
+                    // Add to the comment the number of students for this 
+                    // class
+                    comment += classEnrollemnt + " " + neat.classes[cls];
+                    comment += " " + " students\n";
                 }
+
+                if (neat.selectedClasses.length > 1) {
+                    comment += "\n" + sum + " total";
+                }
+
                 row.push(sum);
+                row.push(comment);
             }
             rows.push(row);
         }

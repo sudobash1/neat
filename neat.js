@@ -31,10 +31,10 @@ neat.SOPHMORE = 1;
 neat.JUNIOR = 2;
 neat.SENIOR = 3;
 
+neat.CLASSES_COUNT = 4;
+
 //Currently selected classes
-neat.selectedClasses = [neat.FRESHMAN,
-                        neat.SOPHMORE,
-                        neat.JUNIOR,
+neat.selectedClasses = [neat.FRESHMAN, neat.SOPHMORE, neat.JUNIOR,
                         neat.SENIOR];
 
 //The different class's names indexed.
@@ -46,15 +46,15 @@ neat.CS = 1;
 neat.ME = 2;
 neat.CE = 3;
 
-//Currently selected majors
-neat.selectedMajors = [neat.EE,
-                       neat.CS,
-                       neat.ME,
-                       neat.CE];
+neat.MAJORS_COUNT = 4;
 
-//The different major's abbreviations indexed.
+//Currently selected majors
+neat.selectedMajors = [neat.EE, neat.CS, neat.ME, neat.CE];
+
+
+//The different major's abbreviations indexed by the enum.
 neat.majorsAbbr = ['EE', 'CS', 'ME', 'CE'];
-//The different major's full names indexed.
+//The different major's full names indexed by the enum.
 neat.majors = ['Electrical Engineering',
                'Computer Science',
                'Mechanical Engineering',
@@ -95,9 +95,14 @@ neat.init = function() {
  * @since: Mar 5, 2015
  */
 neat.updateChecks = function() {
-    for (i = neat.majors.length - 1; i >= 0; --i) {
+    for (i = neat.MAJORS_COUNT - 1; i >= 0; --i) {
         var selected = (neat.selectedMajors.indexOf(i) >= 0);
         document.getElementById(neat.majorsAbbr[i]).checked = selected; 
+    }
+
+    for (i = neat.CLASSES_COUNT - 1; i >= 0; --i) {
+        var selected = (neat.selectedClasses.indexOf(i) >= 0);
+        document.getElementById(neat.classes[i]).checked = selected; 
     }
 }
 
@@ -160,15 +165,25 @@ neat.switchTabTo = function(graphType) {
  */
 neat.updateGraph = function() {
     neat.selectedMajors = [];
-    for (i = neat.majors.length - 1; i >= 0; --i) {
-        if (document.getElementById(neat.majorsAbbr[i]).checked) {
-            neat.selectedMajors.push(i);
+    for (majorNum = neat.MAJORS_COUNT - 1; majorNum >= 0; --majorNum) {
+        if (document.getElementById(neat.majorsAbbr[majorNum]).checked) {
+            neat.selectedMajors.push(majorNum);
+        }
+    }
+
+    neat.selectedClasses = [];
+    for (classNum = neat.CLASSES_COUNT - 1; classNum >= 0; --classNum) {
+        if (document.getElementById(neat.classes[classNum]).checked) {
+            neat.selectedClasses.push(classNum);
         }
     }
 
     if (neat.selectedMajors.length > 0) {
-        //We are just updating the graph, so do not animate it.
-        neat.createGraph(false);
+        if (neat.selectedClasses.length > 0) {
+            neat.createGraph();
+        } else {
+            document.getElementById("graph_div").innerHTML = "Please select classes to display."
+        }
     } else {
         document.getElementById("graph_div").innerHTML = "Please select majors to display."
     }

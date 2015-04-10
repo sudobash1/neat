@@ -49,6 +49,14 @@
             <div id="majors_disp_div" class="app_container">
                 <div id="majors_menu_div" class="menu_div" >
 
+                    Years to include (counted by credits):
+                    <div data-ng-repeat="i in [0,1,2,3]">
+                        <input type="checkbox" id="{{classes[i]}}" onclick="neat.updateGraph();">
+                        <label for="{{classes[i]}}">{{classes[i]}}</label>
+                        <br/>
+                    </div>
+                    <br/>
+                    Majors to display:
                     <div data-ng-repeat="i in [0,1,2,3]">
                         <input type="checkbox" id="{{majorsAbbr[i]}}" onclick="neat.updateGraph();">
                         <label for="{{majorsAbbr[i]}}">{{majors[i]}}</label>
