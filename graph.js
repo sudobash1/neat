@@ -9,6 +9,7 @@
 
 var neat = neat || {};
 
+//Set the default graph options
 neat.graph_options = {
     animation: {
         startup: true,
@@ -27,6 +28,7 @@ neat.graph_options = {
     },
 };
 
+//Set custom options for each line.
 neat.line_options = {};
 neat.line_options[neat.EE] = {color: 'green'};
 neat.line_options[neat.CS] = {color: 'blue'};
