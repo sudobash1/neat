@@ -68,12 +68,25 @@ body {
  height: 10px;
 }
 
+.error_div {
+ visibility: hidden;
+ display: none;
+
+ margin-top: 20%;
+
+ padding-left: 20px;
+
+ font-size: 30px;
+}
+
 .menu_div {
  padding: 2em 2em 2em 2em;
  float: right;
 }
 
 .tab {
+
+ transition: background-color 0.3s ease;
  background-color: #ffffff;
 
  padding: .5em .5em .25em .5em;

@@ -43,7 +43,8 @@ label:before {
  /*Our boxes are about the size of one M*/
  width: 1em;
  height: 1em;
-
+ 
+ transition: background-color 0.3s ease;
  background-color: #7fb0cd;
  border: 2px solid #25205e;
  border-radius: 3px;

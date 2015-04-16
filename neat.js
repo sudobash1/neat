@@ -209,16 +209,22 @@ neat.updateGraph = function() {
         }
     }
 
-    if (neat.selectedMajors.length > 0) {
+    if (neat.selectedMajors.length > 0 || neat.graphType == neat.PROFS) {
         if (neat.selectedClasses.length > 0) {
+            neat.hideClass("error_div");
+            neat.unhideClass("google_graph_div");
             neat.createGraph();
         } else {
-            document.getElementById("google_graph_div").innerHTML =
+            document.getElementById("error_div").innerHTML =
                 "Please select classes to display.";
+            neat.unhideClass("error_div");
+            neat.hideClass("google_graph_div");
         }
     } else {
-        document.getElementById("google_graph_div").innerHTML =
+        document.getElementById("error_div").innerHTML =
             "Please select majors to display.";
+        neat.unhideClass("error_div");
+        neat.hideClass("google_graph_div");
     }
 }
 
