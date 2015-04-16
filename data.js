@@ -16,7 +16,7 @@ neat.dataBase = {
     // of CS professors teaching that year.
     profs: {},
 
-    // A list of years we have profs data for. Sorted low to high.
+    //The years we have of prof data sorted low to high.
     profYears: [],
 
     // An object containing enrollment data for each major. For each major
@@ -24,8 +24,11 @@ neat.dataBase = {
     // for each class.
     enrollment: {},
 
-    // A list of years we have enrollment data for. Sorted low to high.
+    //The years we have of enrollment data sorted low to high.
     enrollmentYears: [],
+
+    //The years we have of prof and enrollment data sorted low to high.
+    years: [],
 
     //The maximum total enrollment for a year in any discipline,
     maxEnrollent: 1,
@@ -56,7 +59,22 @@ neat.key = 'AIzaSyAoPgc2vvLx1clco30E9PwsP4f2deS3iSA'
 neat.cacheData = function(done) {
     return neat.getProfessorData().done( function(){
         neat.getEnrollmentData()
-            .done(done);
+            .done( function() {
+
+                //Determine which years are in common.
+                for (var i = 0; i < neat.dataBase.profYears.length; ++i) {
+                    var index =
+                        neat.dataBase.enrollmentYears.indexOf(
+                            neat.dataBase.profYears[i]
+                    );
+
+                    if (index >= 0) {
+                        neat.dataBase.years.push(neat.dataBase.profYears[i]);
+                    }
+                }
+                done();
+            })
+
     });
 }
 
@@ -81,7 +99,7 @@ neat.getProfessorData = function() {
      *
      *************************************************************************/
 
-    var profTable = '1Jtr4Bk4CD0pBHw3A7WQiY3k50Dk-vp1KF9minqMr';
+    var profTable = '19O_duUEyzyvPIIF2PgL42ayPX4jvLfjoeDqsl-Ih';
 
     // get the data from the professor data fusion table
     var query = "SELECT * FROM " + profTable;
