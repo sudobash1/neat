@@ -17,8 +17,6 @@ neat.MAJORS = "Number of students declaired per major.";
 neat.PROFS = "Number of CS students compared to CS professors.";
 
 //the display divs for the different data the app can display
-neat.MAJORS_DISP_DIV = "majors_disp_div";
-neat.PROFS_DISP_DIV = "profs_disp_div";
 neat.MAJORS_TAB_DIV = "majors_tab_div";
 neat.PROFS_TAB_DIV = "profs_tab_div";
 
@@ -72,15 +70,11 @@ neat.majors = ['Electrical Engineering',
 neat.init = function() {
 
     neat.updateChecks();
+    neat.hideClass('profs_display');
 
     neat.cacheData(function(){
-
         animation.stopSpinners();
-        hidden_elts = document.getElementsByClassName('hide_until_init')
-        for (i = 0; i < hidden_elts.length; i++){
-            hidden_elts[i].style.visibility = "visible";
-        }
-
+        neat.unhideClass('hide_until_init');
         neat.createGraph();
     });
 }
@@ -119,37 +113,65 @@ neat.switchTabTo = function(graphType) {
     if (graphType != neat.graphType) {
 
         neat.graphType = graphType;
-        neat.updateChecks();
-
-        majorsDiv = document.getElementById(neat.MAJORS_DISP_DIV);
-        profsDiv = document.getElementById(neat.PROFS_DISP_DIV);
 
         majorsTab = document.getElementById(neat.MAJORS_TAB_DIV);
         profsTab = document.getElementById(neat.PROFS_TAB_DIV);
 
+        // Hide the graph for now
+        document.getElementById("google_graph_div").innerHTML = "";
+
+        // Change the tab design and display only the elements which are
+        // relevant to this tab.
         if (graphType == neat.MAJORS) {
-            majorsDiv.style.visibility = "visible";
-            majorsDiv.style.display = "block";
-
             majorsTab.className = "tab";
-
-            profsDiv.style.visibility = "hidden";
-            profsDiv.style.display = "none";
-
             profsTab.className = "tab non_selected_tab";
+
+            neat.hideClass('profs_display');
+            neat.unhideClass('majors_display');
+
         } else {
-            majorsDiv.style.visibility = "hidden";
-            majorsDiv.style.display = "none";
-
             majorsTab.className = "tab non_selected_tab";
-
-            profsDiv.style.visibility = "visible"
-            profsDiv.style.display = "block";
-
             profsTab.className = "tab";
+
+            neat.hideClass('majors_display');
+            neat.unhideClass('profs_display');
         }
 
+        //OK, now we are ready for the new graph
         neat.updateGraph();
+    }
+}
+
+/*
+ * hideClass
+ *
+ * All html elements with the specified class name are hidden.
+ *
+ * @author Stephen Robinson
+ * @since: Apr 16, 2015
+ */
+neat.hideClass = function(className) {
+    var hide_els = document.getElementsByClassName(className);
+    for (var i=0; i < hide_els.length; ++i) {
+        hide_els[i].style.visibility = "hidden";
+        hide_els[i].style.display = "none";
+    }
+}
+
+/*
+ * unhideClass
+ *
+ * All html elements with the specified class name are unhidden.
+ * The display style will be set to block.
+ *
+ * @author Stephen Robinson
+ * @since: Apr 16, 2015
+ */
+neat.unhideClass = function(className) {
+    var unhide_els = document.getElementsByClassName(className);
+    for (var i=0; i < unhide_els.length; ++i) {
+        unhide_els[i].style.visibility = "visible";
+        unhide_els[i].style.display = "block";
     }
 }
 
@@ -182,10 +204,12 @@ neat.updateGraph = function() {
         if (neat.selectedClasses.length > 0) {
             neat.createGraph();
         } else {
-            document.getElementById("graph_div").innerHTML = "Please select classes to display."
+            document.getElementById("google_graph_div").innerHTML =
+                "Please select classes to display.";
         }
     } else {
-        document.getElementById("graph_div").innerHTML = "Please select majors to display."
+        document.getElementById("google_graph_div").innerHTML =
+            "Please select majors to display.";
     }
 }
 

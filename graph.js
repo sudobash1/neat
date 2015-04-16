@@ -116,7 +116,9 @@ neat.createGraph = function () {
 
         neat.graph_options.vAxis.maxValue = neat.dataBase.maxEnrollent;
 
-        neat.current_chart = new google.visualization.LineChart(document.getElementById('majors_graph_div'));
+        neat.current_chart = new google.visualization.LineChart(
+            document.getElementById('google_graph_div')
+        );
 
         neat.resizeGraph();
 
@@ -138,16 +140,8 @@ neat.createGraph = function () {
  */
 neat.resizeGraph = function() {
 
-    var disp_div;
-    var menu_div;
-
-    if (neat.graphType == neat.MAJORS) {
-        disp_div = document.getElementById("majors_disp_div");
-        menu_div = document.getElementById("majors_menu_div");
-    } else {
-        disp_div = document.getElementById("profs_disp_div");
-        menu_div = document.getElementById("profs_menu_div");
-    }
+    var disp_div = document.getElementById("disp_div");
+    var menu_div = document.getElementById("menu_div");
 
     //Calculate the dimensions of the graph to fit ideally.
     height = disp_div.offsetHeight * .84;

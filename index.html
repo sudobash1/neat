@@ -37,48 +37,69 @@
     <div id="wrapper">
         <div id="vis_div" ng-app="" ng-controller="neat.namesController" class="hide_until_init"> 
 
-            <div id="majors_tab_div" onclick="neat.switchTabTo(neat.MAJORS)" tabindex="1" class="tab">
+            <div id="majors_tab_div" onclick="neat.switchTabTo(neat.MAJORS)"
+                    tabindex="1" class="tab">
                 CS &amp; EGR Enrollment over time
             </div>
 
-            <div id="profs_tab_div" onclick="neat.switchTabTo(neat.PROFS)" tabindex="2" class="tab non_selected_tab">
+            <div id="profs_tab_div" onclick="neat.switchTabTo(neat.PROFS)"
+                    tabindex="2" class="tab non_selected_tab">
                 CS Students &amp; Faculty over time
             </div>
 
             <div class="clear"> </div>
-            <div id="majors_disp_div" class="app_container">
-                <div id="majors_menu_div" class="menu_div" >
+            <div id="disp_div" class="app_container">
+                <div id="menu_div" class="menu_div" >
 
                     Years to include (counted by credits):
                     <div data-ng-repeat="i in [0,1,2,3]">
-                        <input type="checkbox" id="{{classes[i]}}" onclick="neat.updateGraph();">
+                        <input type="checkbox" id="{{classes[i]}}"
+                                onclick="neat.updateGraph();">
                         <label for="{{classes[i]}}">{{classes[i]}}</label>
                         <br/>
                     </div>
+
                     <br/>
-                    Majors to display:
-                    <div data-ng-repeat="i in [0,1,2,3]">
-                        <input type="checkbox" id="{{majorsAbbr[i]}}" onclick="neat.updateGraph();">
-                        <label for="{{majorsAbbr[i]}}">{{majors[i]}}</label>
-                        <br/>
+
+                    <div class="majors_display">
+                        Majors to display:
+                        <div data-ng-repeat="i in [0,1,2,3]">
+                            <input type="checkbox" id="{{majorsAbbr[i]}}"
+                                    onclick="neat.updateGraph();">
+
+                            <label for="{{majorsAbbr[i]}}">
+                                {{majors[i]}}
+                            </label>
+
+                            <br/>
+                        </div>
+                    </div>
+
+                    <div class="profs_display">
+                        Display format:
+                        <div>
+                            <input type="radio" id="profs_raw"
+                                    onclick="neat.updateGraph();">
+                            <label for="profs_raw">raw data</label>
+                            <br/>
+                            <input type="radio" id="profs_ratio"
+                                    onclick="neat.updateGraph();">
+                            <label for="profs_ratio">
+                                professor studen ratio
+                            </label>
+                            <br/>
+                        </div>
                     </div>
 
                 </div>
 
                 <div class="graph_div">
-                    <div id="majors_graph_div"></div>
+                    <div id="google_graph_div"></div>
                 </div>
 
                 <div class="clear"></div>
             </div>
 
-            <div id="profs_disp_div" style="visibility: hidden; display: none;" class="app_container">
-                <div id="profs_menu_div" class="menu_div" >
-                </div>
-                <h1>Nothing to see here!</h1>
-                <h2>Move along...</h2>
-                <div class="clear"> </div>
-            </div>
             <div class="clear"></div>
         </div>
     </div>
