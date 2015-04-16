@@ -73,7 +73,9 @@ neat.createGraph = function () {
 
                 var major = neat.selectedMajors[j];
                 var sum = 0;
-                var comment = "";
+
+                var comment = "In " + year + " the " + 
+                    neat.majorsAbbr[major] + " enrollemnt was:\n\n";
 
                 //Add up data for all selected classes
                 for (var k=0; k < neat.selectedClasses.length; ++k) {
@@ -143,7 +145,8 @@ neat.createGraph = function () {
             var row = [year];
 
             var students_sum = 0;
-            var students_comment = "";
+
+            var students_comment = "In " + year + " the CS enrollemnt was:\n\n";
 
             //Add up data for all selected classes
             for (var k=0; k < neat.selectedClasses.length; ++k) {
@@ -169,14 +172,18 @@ neat.createGraph = function () {
                 profs_comment += "\n" + profs[k];
             }
 
+            if (neat.selectedClasses.length > 1) {
+                students_comment += "\n" + students_sum + " total";
+            }
+
             if (neat.profs_ratio_display) {
-                row.push(students_sum / profs.length);
-                row.push(profs_comment);
+                var ratio = students_sum / profs.length;
+                var comment = profs_comment + "\n\n" + students_comment + 
+                    "\n\n student:professor ratio " + ratio;
+                row.push(ratio);
+                row.push(comment);
             } else {
                 row.push(students_sum);
-                if (neat.selectedClasses.length > 1) {
-                    students_comment += "\n" + students_sum + " total";
-                }
                 row.push(students_comment);
                 row.push(profs.length);
                 row.push(profs_comment);
