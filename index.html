@@ -78,15 +78,17 @@
                     <div class="profs_display">
                         Display format:
                         <div>
-                            <input type="radio" id="profs_raw"
-                                    onclick="neat.updateGraph();">
-                            <label for="profs_raw">raw data</label>
-                            <br/>
                             <input type="radio" id="profs_ratio"
+                                    name="profs_display_format"
                                     onclick="neat.updateGraph();">
                             <label for="profs_ratio">
-                                professor studen ratio
+                                professor student ratio
                             </label>
+                            <br/>
+                            <input type="radio" id="profs_raw"
+                                    name="profs_display_format"
+                                    onclick="neat.updateGraph();">
+                            <label for="profs_raw">raw data</label>
                             <br/>
                         </div>
                     </div>

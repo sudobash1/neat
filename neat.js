@@ -31,6 +31,9 @@ neat.SENIOR = 3;
 
 neat.CLASSES_COUNT = 4;
 
+//Whether or not to display professor student data as a ratio.
+neat.profs_ratio_display = true;
+
 //Currently selected classes
 neat.selectedClasses = [neat.FRESHMAN, neat.SOPHMORE, neat.JUNIOR,
                         neat.SENIOR];
@@ -97,6 +100,12 @@ neat.updateChecks = function() {
     for (i = neat.CLASSES_COUNT - 1; i >= 0; --i) {
         var selected = (neat.selectedClasses.indexOf(i) >= 0);
         document.getElementById(neat.classes[i]).checked = selected; 
+    }
+
+    if (neat.profs_ratio_display) {
+        document.getElementById("profs_ratio").checked = true;
+    } else {
+        document.getElementById("profs_raw").checked = true;
     }
 }
 
