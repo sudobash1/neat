@@ -195,6 +195,9 @@ neat.unhideClass = function(className) {
  * @since: Mar 5, 2015
  */
 neat.updateGraph = function() {
+
+    // Update the state of the NEAT app based on what checkboxes and radio
+    // buttons are now checked.
     neat.selectedMajors = [];
     for (majorNum = neat.MAJORS_COUNT - 1; majorNum >= 0; --majorNum) {
         if (document.getElementById(neat.majorsAbbr[majorNum]).checked) {
@@ -208,6 +211,8 @@ neat.updateGraph = function() {
             neat.selectedClasses.push(classNum);
         }
     }
+
+    neat.profs_ratio_display = document.getElementById("profs_ratio").checked;
 
     if (neat.selectedMajors.length > 0 || neat.graphType == neat.PROFS) {
         if (neat.selectedClasses.length > 0) {
