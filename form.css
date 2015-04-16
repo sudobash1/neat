@@ -54,6 +54,10 @@ label:before {
  text-shadow: 1px 1px 1px #25205e;
 }
 
+input + label:hover:before {
+ background-color: #b2d0e1;
+}
+
 /*Radio buttons are round.*/
 input[type=radio] + label:before {
  border-radius: 1em;

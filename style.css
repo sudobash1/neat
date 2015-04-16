@@ -74,7 +74,7 @@ body {
 }
 
 .tab {
- background-color: rgb(255,255,255);
+ background-color: #ffffff;
 
  padding: .5em .5em .25em .5em;
  float: left;
@@ -98,7 +98,8 @@ body {
 }
 
 .non_selected_tab:hover {
- background-color: rgb(255,255,255);
+ border: 5px solid #25205e;
+ background-color: #b2d0e1;
 }
 
 .non_selected_tab {
@@ -109,7 +110,7 @@ body {
 .app_container {
  border-radius: 0px 15px 15px 15px;
  border: 5px solid #25205e;
- background-color: rgb(255,255,255);
+ background-color: #ffffff;
  margin-top: -5px;
 
  width: 100%;
