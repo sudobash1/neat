@@ -75,7 +75,7 @@ neat.createGraph = function () {
                 var sum = 0;
 
                 var comment = "In " + year + " the " + 
-                    neat.majorsAbbr[major] + " enrollemnt was:\n\n";
+                    neat.majorsAbbr[major] + " enrollment was:\n\n";
 
                 //Add up data for all selected classes
                 for (var k=0; k < neat.selectedClasses.length; ++k) {
@@ -87,7 +87,7 @@ neat.createGraph = function () {
 
                     // Add to the comment the number of students for this 
                     // class
-                    comment += classEnrollemnt + " " + neat.classes[cls];
+                    comment += classEnrollment + " " + neat.classes[cls];
                     comment += " " + " students\n";
                 }
 
@@ -146,7 +146,7 @@ neat.createGraph = function () {
 
             var students_sum = 0;
 
-            var students_comment = "In " + year + " the CS enrollemnt was:\n\n";
+            var students_comment = "In " + year + " the CS enrollment was:\n\n";
 
             //Add up data for all selected classes
             for (var k=0; k < neat.selectedClasses.length; ++k) {
