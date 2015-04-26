@@ -13,7 +13,7 @@ var neat = neat || {};
 //Keep track of the current graph type.
 
 //graphType enum
-neat.MAJORS = "Number of students declaired per major.";
+neat.MAJORS = "Number of students declared per major.";
 neat.PROFS = "Number of CS students compared to CS professors.";
 
 //the display divs for the different data the app can display
@@ -25,7 +25,7 @@ neat.graphType = neat.MAJORS;
 
 //Enum for the different classes
 neat.FRESHMAN = 0;
-neat.SOPHMORE = 1;
+neat.SOPHOMORE = 1;
 neat.JUNIOR = 2;
 neat.SENIOR = 3;
 
@@ -35,11 +35,11 @@ neat.CLASSES_COUNT = 4;
 neat.profs_ratio_display = true;
 
 //Currently selected classes
-neat.selectedClasses = [neat.FRESHMAN, neat.SOPHMORE, neat.JUNIOR,
+neat.selectedClasses = [neat.FRESHMAN, neat.SOPHOMORE, neat.JUNIOR,
                         neat.SENIOR];
 
 //The different class's names indexed.
-neat.classes = ['Freshman', 'Sophmore', 'Junior', 'Senior'];
+neat.classes = ['Freshman', 'Sophomore', 'Junior', 'Senior'];
 
 //Enum for the different majors
 neat.EE = 0;
